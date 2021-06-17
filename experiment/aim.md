@@ -19,5 +19,3 @@ x = distance along beam (m)
 
 To find the shear force diagram and bending moment diagram for a given continuous beam. 
 
-
-[Read more](http://bsa-iiith.vlabs.ac.in/exp3/Exp-3 Continuous Beams.pdf)

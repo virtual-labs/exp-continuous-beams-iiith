@@ -5,5 +5,3 @@
 - BMD for continuous beams can be obtained by superimposing the fixed end moments diagram over the free bending moment diagram.
 
 - Three - moment Equation for continuous beams THREE MOMENT EQUATION
-
-[Read more](http://bsa-iiith.vlabs.ac.in/exp3/Exp-3%20Continuous%20Beams.pdf)
