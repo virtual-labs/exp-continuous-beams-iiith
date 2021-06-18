@@ -17,5 +17,5 @@ x = distance along beam (m)
 
 #### Objective
 
-To find the shear force diagram and bending moment diagram for a given continuous beam. 
+To find the shear force diagram and bending moment diagram for a given continuous beam.
 

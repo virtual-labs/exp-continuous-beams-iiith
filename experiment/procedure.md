@@ -1,3 +1,3 @@
 Procedure for the experiment is as follows.
 
-<img src="Observation_Table.JPG">
+<img src="images/Observation_Table.JPG">
