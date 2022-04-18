@@ -8,7 +8,7 @@
 // this function generate the dropdown
 function generateDropdown() {
     console.log("printdropdown");
-    var dropdown = ['Select Boundary Type', 'One Equal Span', 'Two Equal Span', 'Two Unequal Spans']
+    var dropdown = ['Select Spans Type', 'One Equal Span', 'Two Equal Spans', 'Two Unequal Spans']
     var select = document.getElementById("dropdown");
     for (var i = 0; i < dropdown.length; i++) {
         var optn = dropdown[i];
@@ -28,19 +28,15 @@ function onSelection() {
         document.getElementById("procedure-message").innerHTML = "<li>Select the load type, check the input parameters and click on Start button</li>" + "<li>Observe the beam of Deflection and pay attention to the shear force and bending moment in the observation section </li>";
         //    document.getElementById("main-beam1").style.display="block";   
 
-    } else if (selectedDropdownval === "Fixed Beam") {
+    } else if (selectedDropdownval === "Two Equal Spans") {
         console.log("testboya");
         document.getElementById("main-beam1").style.display = "none";
         document.getElementById("procedure-message").innerHTML = "<li>Select the load type, check the input parameters and click on Start button</li>" + "<li>Observe the beam of Deflection and pay attention to the shear force and bending moment in the observation section </li>";
-    } else if (selectedDropdownval === "One Side Fixed One Side SS") {
+    } else if (selectedDropdownval === "Two Unequal Spans") {
         console.log("testboya");
         document.getElementById("main-beam1").style.display = "none";
         document.getElementById("procedure-message").innerHTML = "<li>Select the load type, check the input parameters and click on Start button</li>" + "<li>Observe the beam of Deflection and pay attention to the shear force and bending moment in the observation section </li>";
-    } else if (selectedDropdownval === "Two Side SS") {
-        console.log("testboya");
-        document.getElementById("main-beam1").style.display = "none";
-        document.getElementById("procedure-message").innerHTML = "<li>Select the load type, check the input parameters and click on Start button</li>" + "<li>Observe the beam of Deflection and pay attention to the shear force and bending moment in the observation section </li>";
-    }
+    } 
 }
 
 
@@ -117,8 +113,8 @@ function playSimulation() {
                 const myTimeout = setTimeout(function() { previousClickedEle.push("set1");
                 document.getElementById("set1").style.display = "block";
                 //document.getElementById("procedure-message").innerHTML = "Select Cantilever from the dropdown menu";
-                // document.getElementById("mes1").innerHTML = "Shear force is constant throughout the beam";
-                // document.getElementById("mes2").innerHTML = "Maiximum bending movement occurs at the initial fixed end";
+                document.getElementById("mes1").innerHTML = "Shear force is constant throughout the beam";
+                document.getElementById("mes2").innerHTML = "Maiximum bending movement occurs at the initial fixed end";
                 cantiPlBeam("#canti-pl-main-beam", "#canti-beam-pl");
                 previousClickedBeam.push("beam1");
                 document.getElementById("beam1").style.display = "none";
@@ -129,9 +125,9 @@ function playSimulation() {
                 document.getElementById("main-beam1").style.display = "block";
                 //showObservations('svg-sfd','svg-bmd');
                 animateObserve('.canti-pl-sfd path', 'M 0 200 L 800 200 L 800 150 L 400 150 L 400 300 L 200 300 L 200 100 L 0 100 L 0 200');
-                animateObserve('.canti-pl-bmd path', ' M 0 150 L 800 150 L 350 200 L 350 150 L 350 200 L 150 100 L 0 150');}, 2000);
+                animateObserve('.canti-pl-bmd path', 'M 0 150 L 800 150 L 350 200 L 350 150 L 350 200 L 150 100 L 0 150');}, 100);
             }
-            if (value === "UDL" && selectedDropdownval === "Cantilever") {
+            if (value === "UDL" && selectedDropdownval === "One Equal Span") {
                 document.getElementById("arrow-udl").style.display = "block";
                 moveArrowDown("arrow-udl", 80);
                 const myTimeout = setTimeout(function() {previousClickedEle.push("set2");
@@ -144,11 +140,11 @@ function playSimulation() {
                 document.getElementById("beam2").style.display = "none";
                 previousClickedMainBeam.push("main-beam2");
                 document.getElementById("main-beam2").style.display = "block";
-                animateObserve('.canti-udl-sfd path', 'M 100 300 L 450 300 L 100 400 L 100 300 L 100 300');
-                animateObserve('.canti-udl-bmd path', 'M 100 300 Q 250 300 500 300 C 350 300 150 350 100 400 Q 100 400 100 300');}, 100);
+                animateObserve('.canti-udl-sfd path', 'M 0 150 L 800 150 L 800 100 L 350 100 L 350 250 L 0 100 L 0 150');
+                animateObserve('.canti-udl-bmd path', 'M 0 150 L 800 150 L 350 250 C 200 0 100 0 0 150');}, 100);
                
             }
-            if (value === "Point Load" && selectedDropdownval === "Fixed Beam") {
+            if (value === "Point Load" && selectedDropdownval === "Two Equal Spans") {
                 document.getElementById("arrow").style.display = "block";
                 moveArrowDown("arrow", 150);
                 const myTimeout = setTimeout(function() {previousClickedEle.push("set3");
@@ -160,11 +156,11 @@ function playSimulation() {
                 document.getElementById("beam3").style.display = "none";
                 previousClickedMainBeam.push("main-beam3");
                 document.getElementById("main-beam3").style.display = "block";
-                animateObserve('.fix-pl-sfd path', 'M 150 150 L 450 150 L 450 200 L 300 200 L 300 100 L 150 100 L 150 150');
-                animateObserve('.fix-pl-bmd path', 'M 150 150 L 450 150 L 450 250 L 150 250 L 150 150 L 150 250 L 300 50 L 450 250');}, 100);      
+                animateObserve('.fix-pl-sfd path', 'M 0 150 L 800 150 L 800 200 L 600 200 L 600 50 L 400 50 L 400 250 L 200 250 L 200 100 L 0 100 L 0 150');
+                animateObserve('.fix-pl-bmd path', 'M 0 150 L 800 150 L 600 50 L 400 250 L 200 50 L 0 150 L 400 150 L 400 250');}, 100);      
                
             }
-            if (value === "UDL" && selectedDropdownval === "Fixed Beam") {
+            if (value === "UDL" && selectedDropdownval === "Two Equal Spans") {
                 document.getElementById("arrow-udl").style.display = "block";
                 moveArrowDown("arrow-udl", 100);
                 const myTimeout = setTimeout(function() { previousClickedEle.push("set4");
@@ -176,11 +172,11 @@ function playSimulation() {
                 document.getElementById("beam4").style.display = "none";
                 previousClickedMainBeam.push("main-beam4");
                 document.getElementById("main-beam4").style.display = "block";
-                animateObserve('.fix-udl-sfd path', 'M 150 150 L 450 150 L 450 250 L 150 50 L 150 150');
-                animateObserve('.fix-udl-bmd path', 'M 150 200 L 450 200 L 450 250 L 150 250 L 150 200 L 150 250 Q 300 0 450 250');}, 100);
+                animateObserve('.fix-udl-sfd path', 'M 50 150 L 750 150 L 750 200 L 400 50 L 400 250 L 50 100 L 50 150');
+                animateObserve('.fix-udl-bmd path', 'M 50 150 L 750 150 C 700 0 550 0 450 150 L 400 250 L 350 150 C 250 0 100 0 50 150');}, 100);
                
             }
-            if (value === "Point Load" && selectedDropdownval === "One Side Fixed One Side SS") {
+            if (value === "Point Load" && selectedDropdownval === "Two Unequal Spans") {
                 document.getElementById("arrow").style.display = "block";
                 moveArrowDown("arrow", 150);
                 const myTimeout = setTimeout(function() {previousClickedEle.push("set5");
@@ -192,13 +188,13 @@ function playSimulation() {
                 document.getElementById("beam5").style.display = "none";
                 previousClickedMainBeam.push("main-beam5");
                 document.getElementById("main-beam5").style.display = "block";
-                animateObserve('.oness-pl-sfd path', 'M 150 150 L 450 150 L 450 200 L 300 200 L 300 100 L 150 100 L 150 150');
-                animateObserve('.oness-pl-bmd path', 'M 100 200 L 100 200 L 400 200 L 400 250 L 300 150 L 100 200');}, 70);
+                animateObserve('.oness-pl-sfd path', 'M 50 150 L 750 150 L 750 250 L 600 250 L 600 50 L 450 50 L 450 200 L 250 200 L 250 100 L 50 100 L 50 150');
+                animateObserve('.oness-pl-bmd path', 'M 50 150 L 750 150 L 650 100 L 500 250 L 300 50 L 50 150');}, 70);
            
 
                 
             }
-            if (value === "UDL" && selectedDropdownval === "One Side Fixed One Side SS") {
+            if (value === "UDL" && selectedDropdownval === "Two Unequal Spans") {
                 document.getElementById("arrow-udl").style.display = "block";
                 moveArrowDown("arrow-udl", 100);
                 const myTimeout = setTimeout(function() {  previousClickedEle.push("set6");
@@ -210,42 +206,10 @@ function playSimulation() {
                 document.getElementById("beam6").style.display = "none";
                 previousClickedMainBeam.push("main-beam6");
                 document.getElementById("main-beam6").style.display = "block";
-                animateObserve('.oness-udl-sfd path', 'M 100 200 L 100 200 L 500 200 L 450 300 L 100 150 Q 100 200 100 200');
-                animateObserve('.oness-udl-bmd path', 'M 100 200 L 100 200 L 500 200 L 500 250 Q 250 50 100 200');}, 100);
+                animateObserve('.oness-udl-sfd path', 'M 50 150 L 750 150 L 750 200 L 500 50 L 500 250 L 50 100 L 50 150');
+                animateObserve('.oness-udl-bmd path', 'M 50 150 L 750 150 C 650 100 600 150 500 250 C 400 50 150 0 50 150');}, 100);
               
             }
-            if (value === "Point Load" && selectedDropdownval === "Two Side SS") {
-                document.getElementById("arrow").style.display = "block";
-                moveArrowDown("arrow", 150);
-                const myTimeout = setTimeout(function() { previousClickedEle.push("set7");
-                document.getElementById("set7").style.display = "block";
-                document.getElementById("mes13").innerHTML = "Shear force varies linearly, maximum SF occurs at fixed ends";
-                document.getElementById("mes14").innerHTML = "Maximum Positive B.M at center and negative B.M at fixed end";
-                twossPlBeam("#twoss-pl-main-beam", "#twoss-beam-pl");
-                previousClickedBeam.push("beam7");
-                document.getElementById("beam7").style.display = "none";
-                previousClickedMainBeam.push("main-beam7");
-                document.getElementById("main-beam7").style.display = "block";
-                animateObserve('.twoss-pl-sfd path', 'M 150 150 L 450 150 L 450 200 L 300 200 L 300 100 L 150 100 L 150 150');
-                animateObserve('.twoss-pl-bmd path', 'M 100 300 L 300 300 L 200 250 L 100 300');}, 100);
-               
-            }
-            if (value === "UDL" && selectedDropdownval === "Two Side SS") {
-                document.getElementById("arrow-udl").style.display = "block";
-                moveArrowDown("arrow-udl", 100);
-                const myTimeout = setTimeout(function() { previousClickedEle.push("set8");
-                document.getElementById("set8").style.display = "block";
-                document.getElementById("mes15").innerHTML = "text message of sf";
-                document.getElementById("mes16").innerHTML = "text message of bm";
-                twossUdlBeam("#twoss-udl-main-beam", "#twoss-beam-udl");
-                previousClickedBeam.push("beam8");
-                document.getElementById("beam8").style.display = "none";
-                previousClickedMainBeam.push("main-beam8");
-                document.getElementById("main-beam8").style.display = "block";
-                animateObserve('.twoss-udl-sfd path', 'M 150 150 L 450 150 L 450 250 L 150 50 L 150 150');
-                animateObserve('.twoss-udl-bmd path', 'M 100 300 L 400 300 Q 250 150 100 300');}, 100);
-               
-            }
-        }
-    }
+            
+    }}
 }
