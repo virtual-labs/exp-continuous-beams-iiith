@@ -128,6 +128,7 @@ function playSimulation() {
                 animateObserve('.canti-pl-bmd path', 'M 0 150 L 800 150 L 350 200 L 350 150 L 350 200 L 150 100 L 0 150');}, 100);
             }
             if (value === "UDL" && selectedDropdownval === "One Equal Span") {
+                document.getElementById("arrow").style.display = "none";
                 document.getElementById("arrow-udl").style.display = "block";
                 moveArrowDown("arrow-udl", 80);
                 const myTimeout = setTimeout(function() {previousClickedEle.push("set2");
@@ -161,6 +162,7 @@ function playSimulation() {
                
             }
             if (value === "UDL" && selectedDropdownval === "Two Equal Spans") {
+                document.getElementById("arrow").style.display = "none";
                 document.getElementById("arrow-udl").style.display = "block";
                 moveArrowDown("arrow-udl", 100);
                 const myTimeout = setTimeout(function() { previousClickedEle.push("set4");
@@ -195,6 +197,7 @@ function playSimulation() {
                 
             }
             if (value === "UDL" && selectedDropdownval === "Two Unequal Spans") {
+                document.getElementById("arrow").style.display = "none";
                 document.getElementById("arrow-udl").style.display = "block";
                 moveArrowDown("arrow-udl", 100);
                 const myTimeout = setTimeout(function() {  previousClickedEle.push("set6");
