@@ -75,10 +75,10 @@ function playSimulation() {
             var selectedDropdown = document.getElementById("dropdown");
             console.log(selectedDropdown);
             var selectedDropdownval = selectedDropdown.options[selectedDropdown.selectedIndex].text;
-            var lengthval = document.getElementById("length").value
-            console.log(lengthval);
-            var depthval = document.getElementById("depth").value
-            console.log(depthval);
+            // var lengthval = document.getElementById("length").value
+            // console.log(lengthval);
+            // var depthval = document.getElementById("depth").value
+            // console.log(depthval);
 
 
             
