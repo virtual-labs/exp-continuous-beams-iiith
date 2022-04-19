@@ -107,7 +107,7 @@ function playSimulation() {
                     document.getElementById(mainBeamDisplay[i]).style.display = "none";
                 }
             }
-            if (value === "Point Load" && selectedDropdownval === "One Equal Span") {
+            if (value === "Load" && selectedDropdownval === "One Equal Span") {
                 document.getElementById("arrow").style.display = "block";
                 moveArrowDown("arrow", 95);
                 const myTimeout = setTimeout(function() { previousClickedEle.push("set1");
@@ -130,7 +130,7 @@ function playSimulation() {
             if (value === "UDL" && selectedDropdownval === "One Equal Span") {
                 document.getElementById("arrow").style.display = "none";
                 document.getElementById("arrow-udl").style.display = "block";
-                moveArrowDown("arrow-udl", 128);
+                moveArrowDown("arrow-udl", 135);
                 const myTimeout = setTimeout(function() {previousClickedEle.push("set2");
                 document.getElementById("set2").style.display = "block";
                 document.getElementById("mes3").innerHTML = "Maximum shear force occurs at the fixed end";
@@ -145,9 +145,9 @@ function playSimulation() {
                 animateObserve('.canti-udl-bmd path', 'M 0 150 L 800 150 L 350 250 C 200 0 100 0 0 150');}, 100);
                
             }
-            if (value === "Point Load" && selectedDropdownval === "Two Equal Spans") {
+            if (value === "Load" && selectedDropdownval === "Two Equal Spans") {
                 document.getElementById("arrow").style.display = "block";
-                moveArrowDown("arrow", 122);
+                moveArrowDown("arrow", 130);
                 const myTimeout = setTimeout(function() {previousClickedEle.push("set3");
                 document.getElementById("set3").style.display = "block";
                 document.getElementById("mes5").innerHTML = "Shear force is constant throughout the beam";
@@ -164,7 +164,7 @@ function playSimulation() {
             if (value === "UDL" && selectedDropdownval === "Two Equal Spans") {
                 document.getElementById("arrow").style.display = "none";
                 document.getElementById("arrow-udl").style.display = "block";
-                moveArrowDown("arrow-udl", 100);
+                moveArrowDown("arrow-udl", 110);
                 const myTimeout = setTimeout(function() { previousClickedEle.push("set4");
                 document.getElementById("set4").style.display = "block";
                 document.getElementById("mes7").innerHTML = "text message of sf";
@@ -178,7 +178,7 @@ function playSimulation() {
                 animateObserve('.fix-udl-bmd path', 'M 50 150 L 750 150 C 700 0 550 0 450 150 L 400 250 L 350 150 C 250 0 100 0 50 150');}, 100);
                
             }
-            if (value === "Point Load" && selectedDropdownval === "Two Unequal Spans") {
+            if (value === "Load" && selectedDropdownval === "Two Unequal Spans") {
                 document.getElementById("arrow").style.display = "block";
                 moveArrowDown("arrow", 155);
                 const myTimeout = setTimeout(function() {previousClickedEle.push("set5");
