@@ -109,7 +109,7 @@ function playSimulation() {
             }
             if (value === "Point Load" && selectedDropdownval === "One Equal Span") {
                 document.getElementById("arrow").style.display = "block";
-                moveArrowDown("arrow", 150);
+                moveArrowDown("arrow", 95);
                 const myTimeout = setTimeout(function() { previousClickedEle.push("set1");
                 document.getElementById("set1").style.display = "block";
                 //document.getElementById("procedure-message").innerHTML = "Select Cantilever from the dropdown menu";
@@ -130,7 +130,7 @@ function playSimulation() {
             if (value === "UDL" && selectedDropdownval === "One Equal Span") {
                 document.getElementById("arrow").style.display = "none";
                 document.getElementById("arrow-udl").style.display = "block";
-                moveArrowDown("arrow-udl", 80);
+                moveArrowDown("arrow-udl", 128);
                 const myTimeout = setTimeout(function() {previousClickedEle.push("set2");
                 document.getElementById("set2").style.display = "block";
                 document.getElementById("mes3").innerHTML = "Maximum shear force occurs at the fixed end";
@@ -147,7 +147,7 @@ function playSimulation() {
             }
             if (value === "Point Load" && selectedDropdownval === "Two Equal Spans") {
                 document.getElementById("arrow").style.display = "block";
-                moveArrowDown("arrow", 150);
+                moveArrowDown("arrow", 122);
                 const myTimeout = setTimeout(function() {previousClickedEle.push("set3");
                 document.getElementById("set3").style.display = "block";
                 document.getElementById("mes5").innerHTML = "Shear force is constant throughout the beam";
@@ -180,7 +180,7 @@ function playSimulation() {
             }
             if (value === "Point Load" && selectedDropdownval === "Two Unequal Spans") {
                 document.getElementById("arrow").style.display = "block";
-                moveArrowDown("arrow", 150);
+                moveArrowDown("arrow", 155);
                 const myTimeout = setTimeout(function() {previousClickedEle.push("set5");
                 document.getElementById("set5").style.display = "block";
                 document.getElementById("mes9").innerHTML = "Shear force varies linearly, maximum SF occurs at initial fixed ends";
@@ -199,7 +199,7 @@ function playSimulation() {
             if (value === "UDL" && selectedDropdownval === "Two Unequal Spans") {
                 document.getElementById("arrow").style.display = "none";
                 document.getElementById("arrow-udl").style.display = "block";
-                moveArrowDown("arrow-udl", 100);
+                moveArrowDown("arrow-udl", 140);
                 const myTimeout = setTimeout(function() {  previousClickedEle.push("set6");
                 document.getElementById("set6").style.display = "block";
                 document.getElementById("mes11").innerHTML = "text message of sf";
