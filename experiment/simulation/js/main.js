@@ -17,7 +17,7 @@ function generateDropdown() {
         el.value = optn;
         select.appendChild(el);
     }
-    document.getElementById("procedure-message").innerHTML = "Select Boundary Type from the dropdown menu";
+    document.getElementById("procedure-message").innerHTML = "Select Span Type from the dropdown menu";
 }
 
 function onSelection() {
