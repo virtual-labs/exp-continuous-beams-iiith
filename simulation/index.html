@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/virtual-labs/virtual-style@0.0.6-b/css/style.min.css">
+		<link rel="stylesheet" href="css/main.css">
+		<script type="text/javascript" src="js/bulma-slider.min.js"></script>
+ 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+	</head>
+	<body class="page">
+		<div class="columns is-centered is-flex">
+			<div class="column mt-2 is-10-desktop is-10-tablet is-10-mobile has-text-centered">
+				<div class="v-instruction-container">
+					<div class="v-instruction-title">Instructions</div>
+					<div id="procedure-message" class="v-instruction-text" style=" text-align:left;"></div>
+				</div> 
+
+				<div class="column center-content">
+					<div class="select" >
+							<select id="dropdown" onchange="onSelection()"></select>
+					</div>
+					<p><span class="boundaryType"></span></p>
+				</div>
+				
+	 			<div class="columns is-mobile is-centered is-flex">
+	 				<div id="anime-demo" class="column has-text-centered controls">
+						<button id="play" class="v-button" onclick="playSimulation()">Start</button>
+						<button id="restart" class="v-button" onclick = "window.location.reload()">Reset</button>
+					</div> 
+				</div>
+
+			</div>
+		</div>
+		<!-- -->
+		
+		<div class="columns is-centered is-variable is-flex is-flex-wrap-wrap workspace">
+			<div id="apparatus" class="column has-text-centered is-2-desktop is-5-tablet is-5-mobile apparatus">
+				<div class="v-datalist-container">
+					<div class="v-datalist-title" id="load"> Load Type</div>	
+	            	<label class="v-radio v-datalist-row" id="radio-style">
+	            		<input type="radio" class="v-radio-input" name="answer" value="Load"	 id="plbtn" >Point Load</label>
+	            	<label class="v-radio v-datalist-row" id="radio-style">
+	            		<input type="radio" class="v-radio-input" name="answer" value="UDL">Uniform Distributed </label>
+         
+	            	<!-- <div class="v-datalist-title">Input Parameters</div>          				
+	 				<label class="v-checkbox v-datalist-row" id="radio-style"> 
+	        			<input id="length" type="checkbox" class="v-checkbox-input" step="10"  value="50" >Length(mts): 50</label> 
+	 					<output id="lenoutput"></output> 
+
+	 				<label class="v-checkbox v-datalist-row" id="radio-style"> 
+	 					<input id="depth" type="checkbox" class="v-checkbox-input"  step="10"  value="50" >Depth(mm): 50</label>
+	 					<output id="depoutput"></output>  -->
+				</div>
+
+			</div>
+
+			<div id="observations" class="column has-text-centered is-2-desktop is-5-tablet is-5-mobile observations">
+				<div class="v-datalist-container">
+					<div class="v-datalist-title">Observations</div>
+					
+					<!---cantiliver starts-->
+						<div id="set1"  class="" style="width: 100%; display: none;" >
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Shear Force </p> 
+								<svg class="canti-pl-sfd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 0 200 L 800 200 L 800 150 L 400 150 L 400 300 L 200 300 L 200 100 L 0 100 L 0 200" style="stroke:black;fill:none;stroke-width:5px;" />
+									<p id="mes1"  class="" style="width: 100%; font-size:14px;"></p>
+								</svg>
+									
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Bending Movement </p> 
+								<svg class="canti-pl-bmd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 0 150 L 800 150 L 350 200 L 350 150 L 350 200 L 150 100 L 0 150" style="stroke:black; fill:none;stroke-width:5px;" />
+									<p id="mes2"  class="" style="width: 100%; font-size:14px;"></p>
+								</svg>			
+						</div>
+
+						<div id="set2" class="" style="width: 100%; display: none;">
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Shear Force </p> 
+								<svg class="canti-udl-sfd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 0 150 L 800 150 L 800 100 L 350 100 L 350 250 L 0 100 L 0 150" style="stroke:black;fill:none;stroke-width:5px;" />
+									<p id="mes3"  class="" style="width: 100%; font-size:14px;"></p>
+								</svg>
+								
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Bending Movement </p>
+								<svg class="canti-udl-bmd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 0 150 L 800 150 L 350 250 C 200 0 100 0 0 150" style="stroke:black; fill:none;stroke-width:5px;" />
+									<p id="mes4"  class="" style="width: 100%; font-size:14px;"></p>
+									</svg>
+						</div>
+							<!---fixed beam observations starts-->
+							
+						<div id="set3"  class="" style="width: 100%; display: none;" >
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Shear Force </p> 
+								<svg class="fix-pl-sfd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 0 150 L 800 150 L 800 200 L 600 200 L 600 50 L 400 50 L 400 250 L 200 250 L 200 100 L 0 100 L 0 150" style="stroke:black;fill:none;stroke-width:5px;" />
+									<p id="mes5"  class="" style="width: 100%; font-size:14px;"></p>
+								</svg>
+								
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Bending Movement </p> 
+								<svg class="fix-pl-bmd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 0 150 L 800 150 L 600 50 L 400 250 L 200 50 L 0 150 L 400 150 L 400 250" style="stroke:black; fill:none;stroke-width:5px;" />
+									<p id="mes6"  class="" style="width: 100%; font-size:14px;"></p>
+									</svg>
+						</div>
+							<!-- Point load ends here -->
+							<!--UDL-->
+						<div id="set4" class="" style="width: 100%; display: none;">
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Shear Force </p>
+								<svg class="fix-udl-sfd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 50 150 L 750 150 L 750 200 L 400 50 L 400 250 L 50 100 L 50 150" style="stroke:black;fill:none;stroke-width:5px;" />
+									<p id="mes7"  class="" style="width: 100%; font-size:14px;"></p>
+								</svg>
+							
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Bending Movement </p>
+								<svg class="fix-udl-bmd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 50 150 L 750 150 C 700 0 550 0 450 150 L 400 250 L 350 150 C 250 0 100 0 50 150" style="stroke:black; fill:none;stroke-width:5px;" />
+									<p id="mes8"  class="" style="width: 100%; font-size:14px;"></p>
+								</svg>
+						</div>
+
+							<!-- fixed beam observations ends-->
+
+							<!-- one side ss observations starts here-->
+						<div id="set5"  class="" style="width: 100%; display: none;" >
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Shear Force </p>
+								<svg class="oness-pl-sfd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 50 150 L 750 150 L 750 250 L 600 250 L 600 50 L 450 50 L 450 200 L 250 200 L 250 100 L 50 100 L 50 150" style="stroke:black;fill:none;stroke-width:5px;" />
+									<p id="mes9" style="width: 100%; font-size:14px;;"></p>
+									</svg>
+									 
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Bending Moment </p> 
+								<svg class="oness-pl-bmd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 50 150 L 750 150 L 650 100 L 500 250 L 300 50 L 50 150" style="stroke:black; fill:none;stroke-width:5px;" />
+									<p id="mes10" style="width: 100%; font-size:14px;;"></p>
+								</svg>
+						</div>
+									
+						<div id="set6" class="" style="width: 100%; display: none;">
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Shear Force </p> 
+								<svg class="oness-udl-sfd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 50 150 L 750 150 L 750 200 L 500 50 L 500 250 L 50 100 L 50 150" style="stroke:black;fill:none;stroke-width:5px;" />
+									<p id="mes11" style="width: 100%; font-size:14px;;"></p>
+								</svg>
+				
+							<p style="float: left; margin-left: 20px; margin-top: 20px; font-weight: 700;">Bending Moment </p> 
+								<svg class="oness-udl-bmd" width="180px" height="90px" viewBox="1 143 865 70">
+									<path d="M 50 150 L 750 150 C 650 100 600 150 500 250 C 400 50 150 0 50 150" style="stroke:black; fill:none;stroke-width:5px;" />
+									<p id="mes12" style="width: 100%; font-size:14px;;"></p>
+								</svg>
+						</div>
+
+							<!-- one side ss observaitons ends here-->
+
+							
+
+				</div>
+			</div>
+
+			<div class="column has-text-centered is-6-desktop is-10-tablet is-10-mobile simulation v-canvas-container" id="container">
+					<!-- <canvas id="main" class="v-canvas-container"></canvas> -->
+					<!-- <div></div> -->
+				
+				<div class="columns">
+  					<div class="column">
+  						<!-- arrow starts -->
+						<div id="arrow" class="arrow column">
+							<svg version="1.1" id="Capa_1"  width="550" height="100"viewBox="190 0 120 80" preserveAspectRatio="xMaxYMin meet">
+								<g id="arrow_down">
+									<path style="fill:#030104;" d="M32,16.016l-5.672-5.664c0,0-3.18,3.18-6.312,6.312V0h-8.023v16.664l-6.32-6.32L0,16.016L16,32 L32,16.016z"/>
+								</g>
+							</svg>
+							<!-- <svg version="1.1" id="Capa_1"  width="550" height="100"viewBox="20 0 120 80" preserveAspectRatio="xMaxYMin meet">
+								<g id="arrow_down">
+									<path style="fill:#030104;" d="M32,16.016l-5.672-5.664c0,0-3.18,3.18-6.312,6.312V0h-8.023v16.664l-6.32-6.32L0,16.016L16,32 L32,16.016z"/>
+								</g>
+							</svg> -->
+						</div>
+						<div id ="arrow-udl"  style=" display: none;">
+							<svg width="491" height="52" viewBox="0 0 491 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+<path d="M51.9393 51.0607C52.5251 51.6464 53.4749 51.6464 54.0607 51.0607L63.6066 41.5147C64.1924 40.9289 64.1924 39.9792 63.6066 39.3934C63.0208 38.8076 62.0711 38.8076 61.4853 39.3934L53 47.8787L44.5147 39.3934C43.9289 38.8076 42.9792 38.8076 42.3934 39.3934C41.8076 39.9792 41.8076 40.9289 42.3934 41.5147L51.9393 51.0607ZM51.5 -8.93808e-09L51.5 50L54.5 50L54.5 8.93808e-09L51.5 -8.93808e-09Z" fill="black"/>
+<path d="M96.9393 51.0607C97.5251 51.6464 98.4749 51.6464 99.0607 51.0607L108.607 41.5147C109.192 40.9289 109.192 39.9792 108.607 39.3934C108.021 38.8076 107.071 38.8076 106.485 39.3934L98 47.8787L89.5147 39.3934C88.9289 38.8076 87.9792 38.8076 87.3934 39.3934C86.8076 39.9792 86.8076 40.9289 87.3934 41.5147L96.9393 51.0607ZM96.5 -8.93808e-09L96.5 50L99.5 50L99.5 8.93808e-09L96.5 -8.93808e-09Z" fill="black"/>
+<path d="M137.939 51.0607C138.525 51.6464 139.475 51.6464 140.061 51.0607L149.607 41.5147C150.192 40.9289 150.192 39.9792 149.607 39.3934C149.021 38.8076 148.071 38.8076 147.485 39.3934L139 47.8787L130.515 39.3934C129.929 38.8076 128.979 38.8076 128.393 39.3934C127.808 39.9792 127.808 40.9289 128.393 41.5147L137.939 51.0607ZM137.5 -8.93808e-09L137.5 50L140.5 50L140.5 8.93808e-09L137.5 -8.93808e-09Z" fill="black"/>
+<path d="M179.939 51.0607C180.525 51.6464 181.475 51.6464 182.061 51.0607L191.607 41.5147C192.192 40.9289 192.192 39.9792 191.607 39.3934C191.021 38.8076 190.071 38.8076 189.485 39.3934L181 47.8787L172.515 39.3934C171.929 38.8076 170.979 38.8076 170.393 39.3934C169.808 39.9792 169.808 40.9289 170.393 41.5147L179.939 51.0607ZM179.5 -8.93808e-09L179.5 50L182.5 50L182.5 8.93808e-09L179.5 -8.93808e-09Z" fill="black"/>
+<path d="M223.939 51.0607C224.525 51.6464 225.475 51.6464 226.061 51.0607L235.607 41.5147C236.192 40.9289 236.192 39.9792 235.607 39.3934C235.021 38.8076 234.071 38.8076 233.485 39.3934L225 47.8787L216.515 39.3934C215.929 38.8076 214.979 38.8076 214.393 39.3934C213.808 39.9792 213.808 40.9289 214.393 41.5147L223.939 51.0607ZM223.5 -8.93808e-09L223.5 50L226.5 50L226.5 8.93808e-09L223.5 -8.93808e-09Z" fill="black"/>
+<path d="M264.939 51.0607C265.525 51.6464 266.475 51.6464 267.061 51.0607L276.607 41.5147C277.192 40.9289 277.192 39.9792 276.607 39.3934C276.021 38.8076 275.071 38.8076 274.485 39.3934L266 47.8787L257.515 39.3934C256.929 38.8076 255.979 38.8076 255.393 39.3934C254.808 39.9792 254.808 40.9289 255.393 41.5147L264.939 51.0607ZM264.5 -8.93808e-09L264.5 50L267.5 50L267.5 8.93808e-09L264.5 -8.93808e-09Z" fill="black"/>
+<path d="M305.939 51.0607C306.525 51.6464 307.475 51.6464 308.061 51.0607L317.607 41.5147C318.192 40.9289 318.192 39.9792 317.607 39.3934C317.021 38.8076 316.071 38.8076 315.485 39.3934L307 47.8787L298.515 39.3934C297.929 38.8076 296.979 38.8076 296.393 39.3934C295.808 39.9792 295.808 40.9289 296.393 41.5147L305.939 51.0607ZM305.5 -8.93808e-09L305.5 50L308.5 50L308.5 8.93808e-09L305.5 -8.93808e-09Z" fill="black"/>
+<path d="M350.939 51.0607C351.525 51.6464 352.475 51.6464 353.061 51.0607L362.607 41.5147C363.192 40.9289 363.192 39.9792 362.607 39.3934C362.021 38.8076 361.071 38.8076 360.485 39.3934L352 47.8787L343.515 39.3934C342.929 38.8076 341.979 38.8076 341.393 39.3934C340.808 39.9792 340.808 40.9289 341.393 41.5147L350.939 51.0607ZM350.5 -8.93808e-09L350.5 50L353.5 50L353.5 8.93808e-09L350.5 -8.93808e-09Z" fill="black"/>
+<path d="M391.939 51.0607C392.525 51.6464 393.475 51.6464 394.061 51.0607L403.607 41.5147C404.192 40.9289 404.192 39.9792 403.607 39.3934C403.021 38.8076 402.071 38.8076 401.485 39.3934L393 47.8787L384.515 39.3934C383.929 38.8076 382.979 38.8076 382.393 39.3934C381.808 39.9792 381.808 40.9289 382.393 41.5147L391.939 51.0607ZM391.5 -8.93808e-09L391.5 50L394.5 50L394.5 8.93808e-09L391.5 -8.93808e-09Z" fill="black"/>
+
+</svg>
+							
+						</div>
+						<!--arrow ends-->
+
+
+						
+						<!-- Main cantilever beam start here--->
+						<div id="main-beam1" style="display: none;">
+							<svg class="" width="484" height="168" viewBox="0 150 900 150"  stroke="#BA8C63" fill="#BA8C63">
+								<path id="canti-pl-main-beam" class="st1" d="M 50 100 L 400 100 L 750 100 L 750 150 L 800 200 L 750 200 L 750 300 L 750 200 L 700 200 L 750 150 L 400 150 L 450 200 L 400 200 L 400 300 L 400 200 L 350 200 L 400 150 L 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 50 100"/> 			
+							</svg>
+						</div>
+						<div id="main-beam2" style="display: none;">
+							<svg class="" width="484" height="390" viewBox="0 150 900 150"  stroke="#BA8C63" fill="#BA8C63">
+								<path id="canti-udl-main-beam" class="st1" d="M 50 100 L 400 100 L 750 100 L 750 150 L 800 200 L 750 200 L 750 300 L 750 200 L 700 200 L 750 150 L 400 150 L 450 200 L 400 200 L 400 300 L 400 200 L 350 200 L 400 150 L 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 50 100"/> 			
+							</svg>
+						</div>
+						<!-- Main cantilever beam Ends here--->
+						
+						<!-- Main fixed beam start here--->
+						<div id="main-beam3" style="display: none;">
+							<svg class="" width="484" height="298" viewBox="0 210 900 150"  stroke="#BA8C63" fill="#BA8C63">
+								<path id="fixed-pl-main-beam" class="st1" d="M 50 100 L 400 100 L 750 100 L 750 150 L 800 200 L 750 200 L 750 300 L 750 200 L 700 200 L 750 150 L 400 150 L 450 200 L 400 200 L 400 300 L 400 200 L 350 200 L 400 150 L 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 50 100"/> 			
+							</svg>
+						</div>
+						<div id="main-beam4" style="display: none;">
+							<svg class="" width="484" height="398" viewBox="0 210 900 150"  stroke="#BA8C63" fill="#BA8C63">
+								<path id="fixed-udl-main-beam" class="st1" d="M 50 100 L 400 100 L 750 100 L 750 150 L 800 200 L 750 200 L 750 300 L 750 200 L 700 200 L 750 150 L 400 150 L 450 200 L 400 200 L 400 300 L 400 200 L 350 200 L 400 150 L 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 50 100"/> 			
+							</svg>
+						</div>
+						<!-- Main fixed beam ends here--->
+						
+						<!-- Main One Side SS beam start here--->
+						<div id="main-beam5" style="display: none;">
+							<svg class="" width="484" height="286" viewBox="0 150 900 150"  stroke="#BA8C63" fill="#BA8C63">
+								<path id="oness-pl-main-beam" class="st1" d="M 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 500 150 L 450 200 L 500 200 L 500 300 L 500 200 L 550 200 L 500 150 L 750 150 L 700 200 L 750 200 L 750 300 L 750 200 L 800 200 L 750 150 L 750 100 L 50 100 L 50 150"/> 			
+							</svg>
+						</div>
+						<div id="main-beam6" style="display: none;">
+							<svg class="" width="484" height="398" viewBox="0 150 900 150"  stroke="#BA8C63" fill="#BA8C63">
+								<path id="oness-udl-main-beam" class="st1" d="M 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 500 150 L 450 200 L 500 200 L 500 300 L 500 200 L 550 200 L 500 150 L 750 150 L 700 200 L 750 200 L 750 300 L 750 200 L 800 200 L 750 150 L 750 100 L 50 100 L 50 150"/> 			
+							</svg>
+						</div>
+						<!-- Main One Side beam ends here--->
+						
+						
+					</div>		
+
+
+
+
+
+
+  							 <!-- cantiliver point load and UDL starts here DEFLECTION OF BEAM-->
+					<div id="beam1" style="display: none;">
+						<svg class="" width="484" height="168" viewBox="00 150 900 150"  stroke="#BA8C63" fill="#BA8C63">
+							<path id="canti-beam-pl"  class="st1" d="M 50 100 L 400 100 L 750 100 L 750 150 L 800 200 L 750 200 L 750 300 L 750 200 L 700 200 L 750 150 L 400 150 L 450 200 L 400 200 L 400 300 L 400 200 L 350 200 L 400 150 L 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 50 100" />
+						</svg>
+					</div>
+					<div id="beam2" style="display: none;">	
+						<svg class="" width="484" height="168" viewBox="00 150 900 150"  stroke="#BA8C63" fill="#BA8C63">
+					 		<path id="canti-beam-udl" class="st1" d="M 50 100 L 400 100 L 750 100 L 750 150 L 800 200 L 750 200 L 750 300 L 750 200 L 700 200 L 750 150 L 400 150 L 450 200 L 400 200 L 400 300 L 400 200 L 350 200 L 400 150 L 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 50 100" />
+						</svg>
+					</div>
+					<!-- cantiliver point load and UDL ends here-->
+					
+					<!-- Fixed Beam point load and UDL starts here-->
+					<div id="beam3" style="display: none;">
+						<svg class="" width="484" height="168" viewBox="00 210 900 150"  stroke="#BA8C63" fill="#BA8C63">
+					 		<path id="fixed-beam-pl" class="st1" d="M 50 100 L 400 100 L 750 100 L 750 150 L 800 200 L 750 200 L 750 300 L 750 200 L 700 200 L 750 150 L 400 150 L 450 200 L 400 200 L 400 300 L 400 200 L 350 200 L 400 150 L 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 50 100" />
+						</svg>
+					</div>
+					<div id="beam4" style="display: none;">
+						<svg class="" width="484" height="168" viewBox="00 210 900 150"  stroke="#BA8C63" fill="#BA8C63">
+							<path id="fixed-beam-udl" class="st1" d="M 50 100 L 400 100 L 750 100 L 750 150 L 800 200 L 750 200 L 750 300 L 750 200 L 700 200 L 750 150 L 400 150 L 450 200 L 400 200 L 400 300 L 400 200 L 350 200 L 400 150 L 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 50 100" />
+					 	</svg>
+					</div>
+					<!-- Fixed Beam point load and UDL ends here-->
+
+					<!-- One Side SS point load and UDL starts here-->
+					<div id="beam5" style="display: none;">
+						<svg class="" width="484" height="168" viewBox="00 150 900 150"  stroke="#BA8C63" fill="#BA8C63">
+							<path id="oness-beam-pl" class="st1" d="M 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 500 150 L 450 200 L 500 200 L 500 300 L 500 200 L 550 200 L 500 150 L 750 150 L 700 200 L 750 200 L 750 300 L 750 200 L 800 200 L 750 150 L 750 100 L 50 100 L 50 150"/>
+						</svg>
+					</div>
+					<div id="beam6" style="display: none;">
+						<svg class="" width="484" height="168" viewBox="00 150 900 150"  stroke="#BA8C63" fill="#BA8C63">
+							<path id="oness-beam-udl" class="st1" d="M 50 150 L 0 200 L 50 200 L 50 300 L 50 200 L 100 200 L 50 150 L 500 150 L 450 200 L 500 200 L 500 300 L 500 200 L 550 200 L 500 150 L 750 150 L 700 200 L 750 200 L 750 300 L 750 200 L 800 200 L 750 150 L 750 100 L 50 100 L 50 150 "/>
+						</svg>
+					</div>
+					<!-- One Side SS point load and UDL ends here-->
+
+					
+
+  				</div>
+			</div>
+			
+			<script src="./js/main.js"></script>
+	 		<script src="./js/animations.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>			
+			<script src="https://cdn.jsdelivr.net/npm/kute.js@2.0.10/dist/kute.min.js"></script>
+		<script src="../assets/js/iframeResize.js"></script></body>
+	</html>

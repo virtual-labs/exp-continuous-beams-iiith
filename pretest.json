@@ -1,0 +1,53 @@
+[
+   {
+      "question":"1. A beam which is supported on more than two supports is called as",
+      "answers":{
+         "a":"Fixed beam",
+         "b":"Continuous beam",
+         "c":"Cantilever beam",
+         "d":"Simply supported beam"
+      },
+      "correctAnswer":"b"
+   },
+   {
+      "question":"2. Which of the following them is also known as multi span beam _______",
+      "answers":{
+         "a":"Cantilever beam",
+         "b":"Simply supported beam",
+         "c":"Fixed beam",
+         "d":"Continuous beam"
+      },
+      "correctAnswer":"d"
+   },
+   {
+      "question":"3. The _________ is more over the supports then at midspan in continuous beams.",
+      "answers":{
+         "a":"Slope",
+         "b":"Bending moment",
+         "c":"Deflection",
+         "d":"Shear force"
+      },
+      "correctAnswer":"b"
+   },
+   {
+      "question":"4. Continuous Beams Are",
+      "answers":{
+         "a":"Stronger and much stiffer than simple beams",
+         "b":"Weaker and less stiffer than simple beams",
+         "c":"Subjected to excessive shear strain",
+         "d":"Withstanding double the maximum bending moment on simple beams",
+         "e":"None of the above"
+      },
+      "correctAnswer":"a"
+   },
+   {
+      "question":"5. Continuous beams are _________",
+      "answers":{
+         "a":"Statically determinate beams",
+         "b":"Statically indeterminate beams",
+         "c":"Statically gravity beams",
+         "d":"Framed beams"
+      },
+      "correctAnswer":"b"
+   }
+]

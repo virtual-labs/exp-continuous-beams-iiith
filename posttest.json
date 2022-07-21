@@ -1,0 +1,20 @@
+[
+   {
+      "question":"1. The maximum negative bending moment in fixed beam carrying udl occurs at _______",
+      "answers":{
+         "a":"Mid span",
+         "b":"1/3 of the span",
+         "c":"Supports",
+         "d":"Half of the span"
+      },
+      "correctAnswer":"c"
+   },
+   {
+      "question":"2. In propped cantilevers, the prop reaction is 3/8 wl.",
+      "answers":{
+         "a":"true",
+         "b":"false"
+      },
+      "correctAnswer":"a"
+   }
+]
