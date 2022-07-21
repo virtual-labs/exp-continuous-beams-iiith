@@ -21,11 +21,25 @@
       "content-type": "text"
     },
     {
+      "target": "pretest.html",
+      "source": "pretest,json",
+      "label": "Procedure",
+      "unit-type": "task",
+      "content-type": "assesment"
+    },
+    {
       "target": "procedure.html",
       "source": "procedure.md",
       "label": "Procedure",
       "unit-type": "task",
       "content-type": "text"
+    },
+    {
+      "target": "posttest.html",
+      "source": "posttest.json",
+      "label": "Posttest",
+      "unit-type": "task",
+      "content-type": "assesment"
     },
     {
       "target": "simulation.html",
